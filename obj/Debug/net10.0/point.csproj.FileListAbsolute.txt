@@ -1,0 +1,14 @@
+C:\Users\dmitr\OneDrive\Рабочий стол\point\bin\Debug\net10.0\point.deps.json
+C:\Users\dmitr\OneDrive\Рабочий стол\point\bin\Debug\net10.0\point.dll
+C:\Users\dmitr\OneDrive\Рабочий стол\point\bin\Debug\net10.0\point.pdb
+C:\Users\dmitr\OneDrive\Рабочий стол\point\obj\Debug\net10.0\point.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dmitr\OneDrive\Рабочий стол\point\obj\Debug\net10.0\point.AssemblyInfoInputs.cache
+C:\Users\dmitr\OneDrive\Рабочий стол\point\obj\Debug\net10.0\point.AssemblyInfo.cs
+C:\Users\dmitr\OneDrive\Рабочий стол\point\obj\Debug\net10.0\point.csproj.CoreCompileInputs.cache
+C:\Users\dmitr\OneDrive\Рабочий стол\point\obj\Debug\net10.0\point.dll
+C:\Users\dmitr\OneDrive\Рабочий стол\point\obj\Debug\net10.0\refint\point.dll
+C:\Users\dmitr\OneDrive\Рабочий стол\point\obj\Debug\net10.0\point.pdb
+C:\Users\dmitr\OneDrive\Рабочий стол\point\obj\Debug\net10.0\ref\point.dll
+C:\Users\dmitr\OneDrive\Рабочий стол\point\bin\Debug\net10.0\point.exe
+C:\Users\dmitr\OneDrive\Рабочий стол\point\bin\Debug\net10.0\point.runtimeconfig.json
+C:\Users\dmitr\OneDrive\Рабочий стол\point\obj\Debug\net10.0\point.genruntimeconfig.cache
