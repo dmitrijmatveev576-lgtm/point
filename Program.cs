@@ -1,33 +1,50 @@
 using System;
 
-class Point
+namespace PointApp
 {
-    public double X { get; set; }
-    public double Y { get; set; }
-
-    public Point(double x, double y)
+  
+    public class Point
     {
-        X = x;
-        Y = y;
+        public double X { get; set; }
+        public double Y { get; set; }
+
+        
+        public Point()
+        {
+            X = 0;
+            Y = 0;
+        }
+
+        
+        public Point(double x, double y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        
+        public void Display()
+        {
+            Console.WriteLine($"Точка з координатами: X = {X}, Y = {Y}");
+        }
     }
 
-    public void DisplayInfo()
+    class Program
     {
-        Console.WriteLine($"X = {X}, Y = {Y}");
-    }
-}
+        static void Main(string[] args)
+        {
+            Console.WriteLine("--- Тестування конструкторів класу Point ---\n");
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        Point point1 = new Point(3.5, 5.0);
-        Point point2 = new Point(-2.1, 4.3);
-        Point point3 = new Point(-4.0, -1.5);
+           
+            Point point1 = new Point();
+            Console.Write("Об'єкт 1 (без параметрів): ");
+            point1.Display();
+            
+            Point point2 = new Point(5.5, 12.0);
+            Console.Write("Об'єкт 2 (з параметрами): ");
+            point2.Display();
 
-        Console.WriteLine("Координати точок:");
-        point1.DisplayInfo();
-        point2.DisplayInfo();
-        point3.DisplayInfo();
+            Console.ReadKey();
+        }
     }
 }
