@@ -12,3 +12,4 @@ C:\Users\dmitr\OneDrive\Рабочий стол\point\obj\Debug\net10.0\ref\poin
 C:\Users\dmitr\OneDrive\Рабочий стол\point\bin\Debug\net10.0\point.exe
 C:\Users\dmitr\OneDrive\Рабочий стол\point\bin\Debug\net10.0\point.runtimeconfig.json
 C:\Users\dmitr\OneDrive\Рабочий стол\point\obj\Debug\net10.0\point.genruntimeconfig.cache
+C:\Users\dmitr\OneDrive\Рабочий стол\point\obj\Debug\net10.0\point.sourcelink.json
