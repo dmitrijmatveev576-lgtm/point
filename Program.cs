@@ -2,6 +2,52 @@ using System;
 
 namespace PointApp
 {
+    // Структура StructPoint (тип значення / value type)
+    public struct StructPoint
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+        public StructPoint(double x, double y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        public void Display()
+        {
+            Console.WriteLine($"Структура StructPoint: X = {X}, Y = {Y}");
+        }
+
+        // Перевантаження оператора
+        public static StructPoint operator +(StructPoint p1, StructPoint p2)
+        {
+            return new StructPoint(p1.X + p2.X, p1.Y + p2.Y);
+        }
+        public static bool operator ==(StructPoint p1, StructPoint p2)
+        {
+            return p1.X == p2.X && p1.Y == p2.Y;
+        }
+
+        public static bool operator !=(StructPoint p1, StructPoint p2)
+        {
+            return !(p1 == p2);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is StructPoint other)
+            {
+                return X == other.X && Y == other.Y;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(X, Y);
+        }
+    }
+
     public class Point
     {
         public double X { get; set; }
@@ -21,10 +67,9 @@ namespace PointApp
 
         public void Display()
         {
-            Console.WriteLine($"Точка з координатами: X = {X}, Y = {Y}");
+            Console.WriteLine($"Клас Point: X = {X}, Y = {Y}");
         }
 
-        // Перевантаження оператора + (додавання координат двох точок)
         public static Point operator +(Point p1, Point p2)
         {
             if (p1 is null || p2 is null)
@@ -33,7 +78,6 @@ namespace PointApp
             return new Point(p1.X + p2.X, p1.Y + p2.Y);
         }
 
-        // Перевантаження оператора ==
         public static bool operator ==(Point p1, Point p2)
         {
             if (ReferenceEquals(p1, p2))
@@ -41,16 +85,17 @@ namespace PointApp
             if (p1 is null || p2 is null)
                 return false;
             
-            return p1.X == p2.X && p1.Y == p2.Y;
+            return p1.X == XStaticHelper(p1, p2);
         }
 
-        // Перевантаження оператора != (обов'язково в парі з ==)
+       
         public static bool operator !=(Point p1, Point p2)
         {
             return !(p1 == p2);
         }
 
-        // Перевизначення Equals для уникнення попереджень компілятора
+        private static double XStaticHelper(Point p1, Point p2) => p2.X;
+
         public override bool Equals(object obj)
         {
             if (obj is Point other)
@@ -60,7 +105,6 @@ namespace PointApp
             return false;
         }
 
-        // Перевизначення GetHashCode відповідно до Equals
         public override int GetHashCode()
         {
             return HashCode.Combine(X, Y);
@@ -71,25 +115,49 @@ namespace PointApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("--- Тестування конструкторів та операторів класу Point ---\n");
+            Console.WriteLine("--- 1. Тестування функціоналу StructPoint ---\n");
 
-            Point point1 = new Point();
-            Console.Write("Об'єкт 1 (без параметрів): ");
-            point1.Display();
+            StructPoint structPoint1 = new StructPoint();
+            Console.Write("StructPoint 1 (без параметрів): ");
+            structPoint1.Display();
             
-            Point point2 = new Point(5.5, 12.0);
-            Console.Write("Об'єкт 2 (з параметрами): ");
-            point2.Display();
+            StructPoint structPoint2 = new StructPoint(5.5, 12.0);
+            Console.Write("StructPoint 2 (з параметрами): ");
+            structPoint2.Display();
 
-            // Тест оператора +
-            Point point3 = point1 + point2;
-            Console.Write("Об'єкт 3 (point1 + point2): ");
-            point3.Display();
+            StructPoint structPoint3 = structPoint1 + structPoint2;
+            Console.Write("StructPoint 3 (structPoint1 + structPoint2): ");
+            structPoint3.Display();
 
-            // Тест операторів порівняння == та !=
-            Point point4 = new Point(5.5, 12.0);
-            Console.WriteLine($"\nПорівняння point2 та point4 (однакові координати): point2 == point4 -> {point2 == point4}");
-            Console.WriteLine($"Порівняння point1 та point2 (різні координати): point1 != point2 -> {point1 != point2}");
+            StructPoint structPoint4 = new StructPoint(5.5, 12.0);
+            Console.WriteLine($"Порівняння structPoint2 та structPoint4: structPoint2 == structPoint4 -> {structPoint2 == structPoint4}\n");
+
+
+            Console.WriteLine("--- 2. Порівняння поведінки копіювання: Клас (Reference Type) vs Структура (Value Type) ---\n");
+
+            // Демонстрація для Класу (Point)
+            Console.WriteLine("Оригінальний Класс (Point):");
+            Point classPointA = new Point(10, 10);
+            classPointA.Display();
+
+            Point classPointB = classPointA; // Копіюється ПОСИЛАННЯ на той самий об'єкт у пам'яті
+            classPointB.X = 99; // Змінюємо через другу змінну
+
+            Console.WriteLine("Після зміни classPointB.X = 99:");
+            Console.Write("classPointA: "); classPointA.Display(); // Змінилося і тут!
+            Console.Write("classPointB: "); classPointB.Display();
+            
+
+            Console.WriteLine("\nСтруктура (StructPoint):");
+            StructPoint structPointA = new StructPoint(10, 10);
+            structPointA.Display();
+
+            StructPoint structPointB = structPointA; // Копіюється самі ДАНІ (значення)
+            structPointB.X = 99; // Змінюємо копію
+
+            Console.WriteLine("Після зміни structPointB.X = 99:");
+            Console.Write("structPointA: "); structPointA.Display(); // Залишилося незмінним!
+            Console.Write("structPointB: "); structPointB.Display();
 
             Console.ReadKey();
         }
